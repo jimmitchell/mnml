@@ -13,28 +13,28 @@
     {{- end }}
     {{- $paginator := .Paginate $pages (index .Site.Params "archive-paginate" | default 20) }}
     {{- range $paginator.Pages  }}
-    <article>
+    <article class="h-entry">
     {{- if .Title }}
-        <h2 class="post-title"><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+        <h2 class="post-title"><a href="{{ .Permalink }}" class="u-url">{{ .Title }}</a></h2>
         <p class="post-date">{{- if .Site.Params.use_short_date }}{{ .Date | time.Format ":date_short" }}{{- else }}{{ .Date | time.Format ":date_full" }}{{- end }}</p>
         {{- if .Site.Params.show_full_post }}
         {{ .Content }}
         {{- else }}
         <p>{{ .Summary | safeHTML }}</p>
-        <p><a href="{{ .Permalink }}">{{ T "Continue reading" }} →</a></p>
+        <p><a href="{{ .Permalink }}" class="u-url">{{ T "Continue reading" }} →</a></p>
         {{- end }}
     {{- else if in .RawContent "<!--more-->"}}
-        <p class="post-date btm-margin"><a href="{{ .Permalink }}">{{- if .Site.Params.use_short_date }}{{ .Date | time.Format ":date_short" }}{{- else }}{{ .Date | time.Format ":date_full" }}{{- end }} →</a></p>
+        <p class="post-date btm-margin"><a href="{{ .Permalink }}" class="u-url">{{- if .Site.Params.use_short_date }}{{ .Date | time.Format ":date_short" }}{{- else }}{{ .Date | time.Format ":date_full" }}{{- end }} →</a></p>
         {{- if .Site.Params.show_full_post }}
         {{ .Content }}
         {{- else }}
         <p>{{ .Summary | safeHTML }}</p>
         {{- if .Truncated }}
-        <p><a href="{{ .Permalink }}">{{ T "Continue reading" }} →</a></p>
+        <p><a href="{{ .Permalink }}" class="u-url">{{ T "Continue reading" }} →</a></p>
         {{- end }}
         {{- end }}
     {{- else }}
-        <p class="post-date btm-margin"><a href="{{ .Permalink }}">{{- if .Site.Params.use_short_date }}{{ .Date | time.Format ":date_short" }}{{- else }}{{ .Date | time.Format ":date_full" }}{{- end }} →</a></p>
+        <p class="post-date btm-margin"><a href="{{ .Permalink }}" class="u-url">{{- if .Site.Params.use_short_date }}{{ .Date | time.Format ":date_short" }}{{- else }}{{ .Date | time.Format ":date_full" }}{{- end }} →</a></p>
         {{ .Content }}
     {{- end }}
     </article>

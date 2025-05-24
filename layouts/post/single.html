@@ -1,8 +1,8 @@
 {{- define "main" }}
 <main>
-    <article>
+    <article class="h-entry">
         {{- if .Title }}
-        <h1 class="post-title">{{ .Title }}</h1>
+        <h1 class="post-title p-name">{{ .Title }}</h1>
         <p class="post-date">{{- if .Site.Params.use_short_date }}{{ .Date | time.Format ":date_short" }}{{- else }}{{ .Date | time.Format ":date_full" }}{{- end }}</p>
         {{- else }}
         <p class="post-date btm-margin">{{- if .Site.Params.use_short_date }}{{ .Date | time.Format ":date_short" }}{{- else }}{{ .Date | time.Format ":date_full" }}{{- end }}</p>
@@ -10,7 +10,9 @@
         {{- with .Params.audio }}
         <script type="text/javascript" src="https://micro.blog/narration.js?url={{ . }}"></script>
         {{- end }}
-        {{ .Content }}
+        <div class="e-content">
+            {{ .Content }}
+        </div>
         {{- if isset .Params "categories" }}
         <p class="categories">
         {{- range $index, $category := .Params.categories }}

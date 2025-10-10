@@ -247,6 +247,7 @@ td {
 th {
   background: var(--accent-1);
   border-bottom: 2px solid var(--accent-2);
+  border-top: 1px solid var(--accent-2);
 }
 
 th:last-child,
@@ -318,6 +319,32 @@ pre code {
 
 div.highlight pre {
   background-color: #000 !important;
+}
+
+.gist {
+  border: 1px solid var(--accent-2);
+  margin: 4rem 0;
+  width: 100%;
+  scrollbar-color: #999 #fff;
+}
+
+.gist .gist-file {
+  margin-bottom: 0 !important;
+}
+
+.gist .gist-file tr {
+  background: #fff;
+}
+
+.gist::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background-color: #fff;
+}
+
+.gist::-webkit-scrollbar-thumb {
+  background: #999;
+  border-radius: var(--border-radius);
 }
 
 highlight,

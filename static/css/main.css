@@ -603,6 +603,10 @@ article ol li {
     border-radius: 6px;
 }
 
+.gist .highlight button {
+  display: none;
+}
+
 .highlight button:hover {
   background: #494949;
   color: #fff;

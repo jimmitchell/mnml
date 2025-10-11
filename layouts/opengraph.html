@@ -1,4 +1,4 @@
 <div data-avatar-background="#3d4149" style="background-color:#3d4149;padding:20px;padding-left:0;line-height: 1.6;" data-content-background="#3d4149"{{ if .Site.Params.custom_avatar }} data-avatar-url="{{ .Site.Params.custom_avatar }}"{{ end }}>
-	<h1 style="font-size:22px;color:#fff;line-height:1.2;">{{ or .Title .Site.Title }}</h1>
-	<p style="font-size:18px;color:#fff;">{{ or .Summary .Content }}</p>
+	<h1 style="font-size:22px;color:#fff;line-height:1.2;">{{ or .Title .Site.Title | plainify }}</h1>
+	<p style="font-size:18px;color:#fff;">{{ or .Summary .Content | plainify }}</p>
 </div>

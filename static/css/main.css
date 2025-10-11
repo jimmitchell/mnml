@@ -832,6 +832,39 @@ main.archive .entry p {
   display: inline;
 }
 
+sup a:link,
+sup a:visited {
+  background: var(--link);
+  color: var(--background);
+  padding: 1px 4px;
+  margin: 0 1px 0 3px;
+  border-radius: 3px;
+  font-size: 85%;
+}
+
+sup a:hover,
+sup a:active {
+  background: var(--link-hover);
+  color: var(--background);
+  text-decoration: none;
+}
+
+.footnotes {
+  font-size: 1.6rem;
+  margin: 4rem 0 0 0;
+  color: var(--accent-3);
+}
+
+.footnotes hr {
+  margin-bottom: 3.5rem;
+}
+
+.footnotes p {
+  margin: 0;
+  line-height: 1.2;
+  margin-bottom: .8rem;
+}
+
 .main-nav {
   margin: 0;
   padding: 1rem 0 2rem 0;

@@ -582,8 +582,6 @@ article video {
 
 article img.align-none {
   display: inline;
-  width: auto;
-  height: auto;
   max-width: 100%;
   margin: 1rem 0;
 }
@@ -594,8 +592,6 @@ article img.align-left {
   margin: .7rem 2rem 1rem 0;
   max-width: 100%;
   text-align: left;
-  width: auto;
-  height: auto;
 }
 
 article img.align-right {
@@ -604,8 +600,6 @@ article img.align-right {
   margin: .7rem 0 1rem 2rem;
   max-width: 100%;
   text-align: right;
-  width: auto;
-  height: auto;
 }
 
 article img.align-left::after,
@@ -621,8 +615,6 @@ article img.align-center {
   margin-left: auto;
   margin-right: auto;
   display: block;
-  width: auto;
-  height: auto;
   max-width: 100%;
 }
 

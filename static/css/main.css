@@ -986,7 +986,8 @@ sup a:active {
   padding: 0.1rem 3rem 2rem;
 }
 
-#guestbooks___challenge-answer-container br {
+#guestbooks___challenge-answer-container br,
+.guestbooks___input-container label[for="challengeQuestionAnswer"] {
   display: none;
 }
 

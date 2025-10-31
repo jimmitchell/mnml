@@ -648,10 +648,15 @@ article img.overflow {
   }
 }
 
+article ul,
+article ol {
+  padding-left: 2rem;
+}
+
+
 article ul li,
 article ol li {
   margin-bottom: 5px;
-  padding-left: 2rem;
 }
 
 .highlight {

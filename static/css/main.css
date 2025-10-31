@@ -657,6 +657,7 @@ article ol {
 article ul li,
 article ol li {
   margin-bottom: 5px;
+  padding-left: 5px;
 }
 
 .highlight {

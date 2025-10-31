@@ -651,6 +651,7 @@ article img.overflow {
 article ul li,
 article ol li {
   margin-bottom: 5px;
+  padding-left: 2rem;
 }
 
 .highlight {

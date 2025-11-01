@@ -1,124 +1,129 @@
 {
-	"version": "2.7.7",
-	"title": "mnml",
-	"description": "A minimal, simple and clean Micro.blog theme.",
-	"fields": [
-		{
-			"field": "defaultContentLanguage",
-			"label": "Site Language",
-			"type": "string",
-			"placeholder": "Preferred language code (e.g. en, de, fr, es)."
-		},
-		{
-		  "field": "params.fediverse_creator",
-		  "label": "Fediverse creator",
-		  "type": "string",
-		  "placeholder": "@username@mastodon.instance"
-		},
-		{
-			"field": "params.use_short_date",
-			"label": "Use a short date format",
-			"type": "boolean"
-		},
-		{
-		  "field": "params.narrow_header",
-		  "label": "Use a narrow site header",
-		  "type": "boolean"
-		},
-		{
-			"field": "params.hide_avatar",
-			"label": "Hide header avatar",
-			"type": "boolean"
-		},
-		{
-		  "field": "params.custom_avatar",
-		  "label": "Custom avatar",
-		  "type": "string",
-		  "placeholder": "Enter a full URL to an image. Ignored if avatar is hidden."
-		},
-		{
-		  "field": "params.pinned_category",
-		  "label": "Pinned post category",
-		  "type": "string",
-		  "placeholder": "Category for the latest pinned post. Leave blank otherwise."
-		},
-		{
-		  "field": "params.home_category",
-		  "label": "Home page categories",
-		  "type": "string",
-		  "placeholder": "Home page categories. Leave blank for all posts."
-		},
-		{
-		  "field": "params.show_full_post",
-		  "label": "Show full posts on homepage",
-		  "type": "boolean"
-		},
-		{
-		  "field": "params.show_read_time",
-		  "label": "Show read time on titled posts",
-		  "type": "boolean"
-		},
-		{
-		  "field": "params.category_full_post",
-		  "label": "Show full posts on category pages",
-		  "type": "boolean"
-		},
-		{
-		  "field": "params.show_categories",
-		  "label": "Show categories on archives page",
-		  "type": "boolean"
-		},
-		{
-		  "field": "params.show_category_count",
-		  "label": "Show post count for archive page categories",
-		  "type": "boolean"
-		},
-		{
-		  "field": "params.photos_category",
-		  "label": "Photos category",
-		  "type": "string",
-		  "placeholder": "Set a single photo category. Leave blank for all images."
-		},
-		{
-		  "field": "params.all_formats",
-		  "label": "Display all image formats (jpg, png, webp, etc.).",
-		  "type": "boolean"
-		},
-		{
-		  "field": "params.masonry_layout",
-		  "label": "Use photos masonry layout",
-		  "type": "boolean"
-		},
-		{
-		  "field": "params.full_width_photos",
-		  "label": "Use a wider photos page",
-		  "type": "boolean"
-		},
-		{
-		  "field": "params.single_image",
-		  "label": "Show first post image only",
-		  "type": "boolean"
-		},
-		{
-			"field": "params.search_results",
-			"label": "Number of search results",
-			"placeholder": "Defaults to 5 if left blank.",
-			"type": "string"
-		},
-		{
-			"field": "params.hide_copyright",
-			"label": "Hide the footer copyright",
-			"type": "boolean"
-		},
-		{
-			"field": "params.footer_rss",
-			"label": "Add a RSS link in the footer",
-			"type": "boolean"
-		},
-		{
-		  "field": "params.hide_credit",
-		  "label": "Hide footer credits",
-		  "type": "boolean"
-		}
-	]
+  "version": "2.7.7",
+  "title": "mnml",
+  "description": "A minimal, simple and clean Micro.blog theme.",
+  "fields": [
+    {
+      "field": "defaultContentLanguage",
+      "label": "Site Language",
+      "type": "string",
+      "placeholder": "Preferred language code (e.g. en, de, fr, es)."
+    },
+    {
+      "field": "params.fediverse_creator",
+      "label": "Fediverse creator",
+      "type": "string",
+      "placeholder": "@username@mastodon.instance"
+    },
+    {
+      "field": "params.use_short_date",
+      "label": "Use a short date format",
+      "type": "boolean"
+    },
+    {
+      "field": "params.narrow_header",
+      "label": "Use a narrow site header",
+      "type": "boolean"
+    },
+    {
+      "field": "params.hide_avatar",
+      "label": "Hide header avatar",
+      "type": "boolean"
+    },
+    {
+      "field": "params.custom_avatar",
+      "label": "Custom avatar",
+      "type": "string",
+      "placeholder": "Enter a full URL to an image. Ignored if avatar is hidden."
+    },
+    {
+      "field": "params.pinned_category",
+      "label": "Pinned post category",
+      "type": "string",
+      "placeholder": "Category for the latest pinned post. Leave blank otherwise."
+    },
+    {
+      "field": "params.home_category",
+      "label": "Home page categories",
+      "type": "string",
+      "placeholder": "Home page categories. Leave blank for all posts."
+    },
+    {
+      "field": "params.show_full_post",
+      "label": "Show full posts on homepage",
+      "type": "boolean"
+    },
+    {
+      "field": "params.show_read_time",
+      "label": "Show read time on titled posts",
+      "type": "boolean"
+    },
+    {
+      "field": "params.enable_code_copy_button",
+      "label": "Enable copy button for code blocks",
+      "type": "boolean"
+    },
+    {
+      "field": "params.category_full_post",
+      "label": "Show full posts on category pages",
+      "type": "boolean"
+    },
+    {
+      "field": "params.show_categories",
+      "label": "Show categories on archives page",
+      "type": "boolean"
+    },
+    {
+      "field": "params.show_category_count",
+      "label": "Show post count for archive page categories",
+      "type": "boolean"
+    },
+    {
+      "field": "params.photos_category",
+      "label": "Photos category",
+      "type": "string",
+      "placeholder": "Set a single photo category. Leave blank for all images."
+    },
+    {
+      "field": "params.all_formats",
+      "label": "Display all image formats (jpg, png, webp, etc.).",
+      "type": "boolean"
+    },
+    {
+      "field": "params.masonry_layout",
+      "label": "Use photos masonry layout",
+      "type": "boolean"
+    },
+    {
+      "field": "params.full_width_photos",
+      "label": "Use a wider photos page",
+      "type": "boolean"
+    },
+    {
+      "field": "params.single_image",
+      "label": "Show first post image only",
+      "type": "boolean"
+    },
+    {
+      "field": "params.search_results",
+      "label": "Number of search results",
+      "placeholder": "Defaults to 5 if left blank.",
+      "type": "string"
+    },
+    {
+      "field": "params.hide_copyright",
+      "label": "Hide the footer copyright",
+      "type": "boolean"
+    },
+    {
+      "field": "params.footer_rss",
+      "label": "Add a RSS link in the footer",
+      "type": "boolean"
+    },
+    {
+      "field": "params.hide_credit",
+      "label": "Hide footer credits",
+      "type": "boolean"
+    }
+  ]
 }

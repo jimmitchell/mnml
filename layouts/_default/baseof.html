@@ -7,8 +7,9 @@
         {{ partial "footer.html" . }}
         <script defer type="text/javascript" src="{{ "js/menu.js" | relURL }}"></script>
         <script defer type="text/javascript" src="{{ "js/scroll-to-top.js" | relURL }}"></script>
+        {{- if .Site.Params.copybutton }}
         <script defer type="text/javascript" src="{{ "js/copybutton.js" | relURL }}"></script>
-        {{- range .Site.Params.plugins_js -}}
+        {{- end }}{{- range .Site.Params.plugins_js -}}
         <script defer type="text/javascript" src="{{ . }}"></script>
         {{- end -}}
     </body>

@@ -695,7 +695,7 @@ article ol li {
 
 p.categories {
     clear: both;
-    padding-top: 2rem;
+    padding-top: 0.5rem;
 }
 
 a.category:link,

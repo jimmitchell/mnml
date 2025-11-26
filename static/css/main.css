@@ -286,9 +286,9 @@ pre {
     border-radius: 0.5rem;
     color: #f8f8f8;
     line-height: 1.5;
-    margin: 2.5rem 0;
+    margin: 3rem 0;
     overflow-x: auto;
-    padding: 3rem;
+    padding: 2.5rem;
     scrollbar-color: #64676e #101115;
     white-space: pre;
 }

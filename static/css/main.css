@@ -1,11 +1,7 @@
 :root {
     color-scheme: light dark;
-    --sans-serif-font:
-        "GTW", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue",
-        Helvetica, Arial, sans-serif;
-    --mono-space-font:
-        SFMono-Regular, ui-monospace, Monaco, "Andale Mono", "Ubuntu Mono",
-        monospace;
+    --sans-serif-font: "GTW", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --mono-space-font: SFMono-Regular, ui-monospace, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
     --font-weight-normal: 400;
     --font-weight-bold: 700;
     --header-width: 94rem;
@@ -222,10 +218,10 @@ hr {
 }
 
 blockquote {
-    border-left: 3px solid var(--accent-2);
+    border-left: 6px solid var(--accent-2);
     color: var(--accent-3);
     font-style: italic;
-    margin: 2rem 0;
+    margin: 4rem 0;
     padding: 0 2rem;
 }
 
@@ -247,7 +243,8 @@ th,
 td {
     border-right: 1px solid var(--accent-2);
     border-bottom: 1px solid var(--accent-2);
-    padding: 8px;
+    line-height: 1.2;
+    padding: 12px 8px;
     text-align: left;
 }
 
@@ -263,7 +260,7 @@ td:last-child {
 }
 
 tbody tr:hover {
-    background-color: var(--link);
+    background-color: var(--accent-3);
     color: var(--background);
     transition: ease-in-out 0.25s;
 }
@@ -707,9 +704,9 @@ a.category:visited,
     color: var(--accent-3);
     display: inline-block;
     font-size: 1.4rem;
-    line-height: 1.6;
+    line-height: 1.8;
     margin: 0 1px 5px 0;
-    padding: 0 8px;
+    padding: 0 6px;
     text-decoration: none;
 }
 

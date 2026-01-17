@@ -52,11 +52,11 @@
         <script type="text/javascript" src="https://micro.blog/conversation.js?url={{ .Permalink }}"></script>
     </div>
     {{- end }}
-    {{- if or (.Next) (.Prev) }}
-    <nav class="main-nav">
+    {{- if or (.NextInSection) (.PrevInSection) }}
+    <nav class="main-nav visually-hidden">
         <ul>
-            <li>{{ if and .Prev (eq .Prev.Type "post") }}<a href="{{ .Prev.Permalink }}">← {{ T "Older" }}</a>{{ end }}</li>
-            <li>{{ if and .Next (eq .Next.Type "post") }}<a href="{{ .Next.Permalink }}">{{ T "Newer" }} →</a>{{ end }}</li>
+            <li>{{ if .PrevInSection }}<a href="{{ .PrevInSection.Permalink }}">← {{ T "Older" }}</a>{{ end }}</li>
+            <li>{{ if .NextInSection }}<a href="{{ .NextInSection.Permalink }}">{{ T "Newer" }} →</a>{{ end }}</li>
         </ul>
     </nav>
     {{- end }}

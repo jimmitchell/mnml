@@ -52,46 +52,13 @@
         <script type="text/javascript" src="https://micro.blog/conversation.js?url={{ .Permalink }}"></script>
     </div>
     {{- end }}
-    
-    
-    {{/* 1) Build a slice of only your blog posts (no replies) */}}
-    {{ $posts := where .Site.RegularPages "Type" "post" }}  
-    
-    {{/* 2) Sort by date ascending so index 0 is your very oldest post */}}
-    {{ $sorted := sort $posts "Date" "asc" }}  
-    
-    {{/* 3) Find the current page’s index in that slice */}}
-    {{ $idx := -1 }}
-    {{ range $i, $p := $sorted }}
-      {{ if eq $p.File.Path .File.Path }}
-        {{ $idx = $i }}
-      {{ end }}
-    {{ end }}
-    
-    {{/* 4) Grab the previous/next items, if they exist */}}
-    {{ $hasPrev := gt $idx 0 }}
-    {{ $hasNext := lt (add $idx 1) (len $sorted) }}
-    
-    {{ if or $hasPrev $hasNext }}
-    <nav class="main-nav">
-      <ul>
-        <li>
-          {{ if $hasPrev }}
-            {{ $prev := index $sorted (sub $idx 1) }}
-            <a href="{{ $prev.Permalink }}">← {{ T "Older" }}</a>
-          {{ end }}
-        </li>
-        <li>
-          {{ if $hasNext }}
-            {{ $next := index $sorted (add $idx 1) }}
-            <a href="{{ $next.Permalink }}">{{ T "Newer" }} →</a>
-          {{ end }}
-        </li>
-      </ul>
+    {{- if or (.NextInSection) (.PrevInSection) }}
+    <nav class="main-nav visually-hidden">
+        <ul>
+            <li>{{ if .PrevInSection }}<a href="{{ .PrevInSection.Permalink }}">← {{ T "Older" }}</a>{{ end }}</li>
+            <li>{{ if .NextInSection }}<a href="{{ .NextInSection.Permalink }}">{{ T "Newer" }} →</a>{{ end }}</li>
+        </ul>
     </nav>
-    {{ end }}
-
-    
-    
+    {{- end }}
 </main>
 {{- end }}

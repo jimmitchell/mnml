@@ -1,5 +1,5 @@
 {{ define "main" }}
-<main>
+<main class="home">
     {{- $allPages := where .Site.Pages.ByDate.Reverse "Type" "post" }}
     {{- $home_categories := slice }}
     {{- if .Site.Params.home_category }}

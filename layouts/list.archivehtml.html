@@ -5,7 +5,6 @@
 		{{- $categories := .Site.Taxonomies.categories.Alphabetical }}
 		{{- $category_count := .Site.Params.show_category_count }}
 		{{- if and (.Site.Params.show_categories) (gt (len $categories) 0) }}
-		<p>xxx</p>
 		<div class="archive-categories">
 			<div class="category-list">
 				{{ range $categories }}

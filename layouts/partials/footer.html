@@ -3,7 +3,7 @@
     {{- $posts := where .Site.Pages "Type" "in" (slice "post" "posts") }}
     {{- $validPosts := where $posts ".Date.Year" "!=" 0 }}
     {{- $earliest := (index (first 1 (sort $validPosts "Date" "asc")) 0).Date.Year }}
-    <p>&copy; {{- if ne $earliest (now.Year) }}{{ $earliest }}&nbsp;-&nbsp;{{- end }}{{ now.Year }} {{ or site.Author.name site.Title }}</p>
+    <p>&copy; {{- if ne $earliest (now.Year) }}{{ $earliest }}&nbsp;-&nbsp;{{- end }}{{ now.Year }} {{ or site.Params.Author.name site.Title }}</p>
 {{- end }}
 {{ partial "custom_footer.html" . }}
 {{- if .Site.Params.footer_rss }}<p>{{ T "Subscribe via" }}&nbsp;<a href="/feed.xml">RSS</a></p>{{- end }}

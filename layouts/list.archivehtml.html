@@ -1,7 +1,7 @@
 {{- define "main" }}
 <main class="archive">
 	<article>
-		<h1 class="page-title">{{ .Title | safeHTML }}</h1>
+		<h1 class="page-title">Archives</h1>
 		{{- $categories := .Site.Taxonomies.categories.Alphabetical }}
 		{{- $category_count := .Site.Params.show_category_count }}
 		{{- if and (.Site.Params.show_categories) (gt (len $categories) 0) }}

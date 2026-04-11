@@ -1221,6 +1221,8 @@ img.bookshelf__cover {
     .site-nav {
         background: var(--background);
         font-size: 2rem;
+        position: relative;
+        z-index: 10020;
     }
 
     .site-nav ul {
@@ -1258,20 +1260,6 @@ img.bookshelf__cover {
     .hamburger {
         cursor: pointer;
         display: block;
-        z-index: 10010;
-    }
-
-    .hamburger.active {
-        position: fixed;
-        right: 20px;
-        top: 20px;
-    }
-
-    body.menu-open .site-title {
-        position: fixed;
-        left: 20px;
-        top: 20px;
-        z-index: 10010;
     }
 
     .hamburger.active .bar:nth-child(2) {

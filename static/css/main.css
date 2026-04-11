@@ -1264,6 +1264,14 @@ img.bookshelf__cover {
     .hamburger.active {
         position: fixed;
         right: 20px;
+        top: 20px;
+    }
+
+    body.menu-open .site-title {
+        position: fixed;
+        left: 20px;
+        top: 20px;
+        z-index: 10010;
     }
 
     .hamburger.active .bar:nth-child(2) {

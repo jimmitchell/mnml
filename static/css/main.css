@@ -765,6 +765,70 @@ a.category:active,
     padding-bottom: 0.5rem;
 }
 
+.archive_years {
+    align-items: center;
+    display: flex;
+    margin-bottom: 3.5rem;
+}
+
+.archive_years label {
+    margin-right: 10px;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: var(--accent-1);
+    background-repeat: no-repeat;
+    background-position: calc(100% - 3px) center;
+    background-size: 2rem;
+    border: 1px solid var(--accent-2);
+    border-radius: var(--border-radius);
+    color: var(--accent-3);
+    cursor: pointer;
+    padding: 0 8px;
+    padding-right: 2.5rem;
+}
+
+select:hover,
+select:active {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: var(--link);
+    background-repeat: no-repeat;
+    background-position: calc(100% - 3px) center;
+    background-size: 2rem;
+    border-color: var(--link);
+    color: var(--background);
+    transition: color 0.15s ease-in-out, background 0.15s ease-in-out, border 0.15s ease-in-out;
+}
+
+select:focus {
+    outline: none;
+}
+
+@media (prefers-color-scheme: light) {
+    select {
+        background-image: url(/img/arrow-dark.svg);
+    }
+    select:hover,
+    select:active {
+        background-image: url(/img/arrow-light-hover.svg);
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    select {
+        background-image: url(/img/arrow-light.svg);
+    }
+    select:hover,
+    select:active {
+        background-image: url(/img/arrow-dark-hover.svg);
+    }
+}
+
 .category-list {
     margin: -1rem 0 6rem;
 }

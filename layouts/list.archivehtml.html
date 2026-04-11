@@ -1,7 +1,8 @@
 {{- define "main" }}
 <main class="archive">
 	<article>
-		<h1 class="page-title">Archives</h1>
+		<h1 class="page-title">{{ T "Archives" }}</h1>
+
 		{{- $categories := .Site.Taxonomies.categories.Alphabetical }}
 		{{- $category_count := .Site.Params.show_category_count }}
 		{{- if and (.Site.Params.show_categories) (gt (len $categories) 0) }}
@@ -13,19 +14,74 @@
 			</div>
 		</div>
 		{{- end }}
-		{{- $posts := where  .Site.RegularPages "Type" "post" }}
-		{{- $grouped := $posts.GroupByDate "2006-01" }}
-		{{- range $grouped }}
-		<h3 class="archive-range">{{ (.Key | printf "%s-01") | dateFormat "January 2006" }}</h3>
-		{{- range .Pages }}
-		<p class="post-date">
-			<a href="{{ .Permalink }}">{{- if .Site.Params.use_short_date }}{{ .Date | time.Format ":date_short" }}{{- else }}{{ .Date | time.Format ":date_full" }}{{- end }} →</a>
-		</p>
-		<div class="entry">
-			<p>{{- if .Title }}<b>{{ .Title | safeHTML }}:</b>&nbsp;{{- end }}{{ .Summary | safeHTML | truncate 300  }}</p>
+
+		{{- $posts := where .Site.RegularPages "Type" "post" }}
+		{{- $groupedByYear := $posts.GroupByDate "2006" }}
+		{{- $groupedByYearMonth := $posts.GroupByDate "2006-01" }}
+		{{- $monthNames := dict "01" "January" "02" "February" "03" "March" "04" "April" "05" "May" "06" "June" "07" "July" "08" "August" "09" "September" "10" "October" "11" "November" "12" "December" }}
+
+		<div class="archive_years">
+			<label for="archive_popup">{{ T "Show posts from" }}:</label>
+			<select id="archive_popup">
+				<option value="all">{{ T "All years" }}</option>
+				{{ range $groupedByYear }}
+				<option value="{{ .Key }}">{{ .Key }}</option>
+				{{ end }}
+			</select>
 		</div>
-		{{- end }}
-		{{- end }}
+
+		<div class="h-feed archive_posts">
+			{{- range $groupedByYearMonth }}
+				{{- $yearMonth := .Key }}
+				{{- $year := index (split $yearMonth "-") 0 }}
+				{{- $month := index (split $yearMonth "-") 1 }}
+				{{- $monthName := index $monthNames $month }}
+				<h3 class="archive-range" data-year="{{ $year }}" data-year-month="{{ $yearMonth }}">{{ $monthName }} {{ $year }}</h3>
+				{{- range .Pages }}
+				<div class="post-container" data-year="{{ .Date.Format "2006" }}" data-year-month="{{ .Date.Format "2006-01" }}">
+					<p class="post-date h-entry">
+						<a href="{{ .Permalink }}">{{- if .Site.Params.use_short_date }}{{ .Date | time.Format ":date_short" }}{{- else }}{{ .Date | time.Format ":date_full" }}{{- end }} →</a>
+					</p>
+					<div class="entry">
+						<p>{{- if .Title }}<b>{{ .Title | safeHTML }}:</b>&nbsp;{{- end }}{{ .Summary | safeHTML | truncate 300  }}</p>
+					</div>
+				</div>
+				{{- end }}
+			{{- end }}
+		</div>
+
+		<script>
+			(function() {
+				const select = document.getElementById('archive_popup');
+
+				function filterPosts() {
+					const sel = select.value;
+					// show/hide each post container
+					document.querySelectorAll('.h-feed .post-container').forEach(el => {
+						el.style.display = (sel === "all" || el.getAttribute('data-year') === sel) ? '' : 'none';
+					});
+
+					// show/hide each year-month header based on whether any following post container is visible
+					document.querySelectorAll('.h-feed h3[data-year-month]').forEach(header => {
+						let next = header.nextElementSibling;
+						let keep = false;
+						while (next && !next.matches('h3[data-year-month]')) {
+							if (next.matches('.post-container') && (next.style.display != 'none')) {
+								keep = true; break;
+							}
+							next = next.nextElementSibling;
+						}
+						header.style.display = keep ? '' : 'none';
+					});
+				}
+
+				// on change, re-filter
+				select.addEventListener('change', filterPosts);
+
+				// initial filter
+				filterPosts();
+			})();
+		</script>
 	</article>
 </main>
 {{- end }}

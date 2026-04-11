@@ -1,7 +1,7 @@
 {{ define "main" }}
 <main class="photos{{ if .Site.Params.full_width_photos }}{{ print "-wide" }}{{ end }}">
 	<article>
-		<h1 class="page-title">Photos</h1>
+		<h1 class="page-title">{{ T "Photos" }}</h1>
 		{{- if .Site.Params.masonry_layout }}
 		{{ partial "photos-masonry.html" . }}
 		{{- else }}

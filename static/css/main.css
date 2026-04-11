@@ -1262,6 +1262,12 @@ img.bookshelf__cover {
         display: block;
     }
 
+    body.menu-open .site-title,
+    body.menu-open .hamburger {
+        position: relative;
+        z-index: 10001;
+    }
+
     .hamburger.active .bar:nth-child(2) {
         opacity: 0;
     }

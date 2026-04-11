@@ -113,6 +113,10 @@ body {
     word-wrap: break-word;
 }
 
+body.menu-open {
+    overflow: hidden;
+}
+
 ::-moz-selection {
     background: var(--accent-2);
 }
@@ -1220,7 +1224,7 @@ img.bookshelf__cover {
     }
 
     .site-nav ul {
-        height: 100dvmax;
+        height: 100dvh;
         justify-content: start;
         padding: 4rem 0;
     }
@@ -1229,8 +1233,9 @@ img.bookshelf__cover {
         background-color: var(--background);
         border-radius: 0;
         flex-direction: column;
-        height: 100dvmax;
+        height: 100dvh;
         left: -100%;
+        overflow: hidden;
         position: fixed;
         text-align: center;
         top: 0;

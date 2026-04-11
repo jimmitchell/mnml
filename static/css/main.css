@@ -1222,7 +1222,7 @@ img.bookshelf__cover {
         background: var(--background);
         font-size: 2rem;
         position: relative;
-        z-index: 10020;
+        z-index: 11000;
     }
 
     .site-nav ul {
@@ -1272,7 +1272,7 @@ img.bookshelf__cover {
     body.menu-open .site-title,
     body.menu-open .hamburger {
         position: relative;
-        z-index: 10001;
+        z-index: 11001;
     }
 
     .hamburger.active .bar:nth-child(2) {

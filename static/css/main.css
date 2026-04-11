@@ -578,11 +578,17 @@ single article {
 article img,
 article video {
     border-radius: var(--border-radius);
+    box-shadow: 0 4px 18px rgba(0,0,0,0.1);
     display: block;
     height: auto;
     margin: 3rem auto;
     width: 100%;
     max-width: 100%;
+}
+
+.microblog_post .microblog_text img {
+    box-shadow: 0 4px 18px rgba(0,0,0,0.1);
+    border-radius: var(--border-radius);
 }
 
 article img.align-none {
@@ -858,7 +864,19 @@ select:focus {
     display: inline;
 }
 
+@keyframes slideUpFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .microblog_conversation {
+    animation: slideUpFadeIn .3s ease-out forwards;
     margin: 5rem 0;
 }
 
@@ -1124,7 +1142,9 @@ footer p {
     width: 3.6rem;
 }
 
-.to-top:hover {
+.to-top:hover,
+.to-top:active {
+    background-color: var(--link);
     opacity: 100%;
 }
 

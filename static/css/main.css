@@ -11,6 +11,7 @@
     --z-menu: 10000;
     --z-header: 11000;
     --z-hamburger: 11001;
+    --z-skip-link: 11002;
 }
 
 @media (prefers-color-scheme: light) {
@@ -120,6 +121,21 @@ body.menu-open {
     overflow: hidden;
 }
 
+.skip-link {
+    background: var(--background);
+    border-radius: var(--border-radius);
+    color: var(--link);
+    left: 0.5rem;
+    padding: 1rem 1.5rem;
+    position: fixed;
+    top: -10rem;
+    transition: top 0.15s ease-in-out;
+    z-index: var(--z-skip-link);
+}
+
+.skip-link:focus {
+    top: 0.5rem;
+}
 
 ::-moz-selection {
     background: var(--accent-2);
@@ -148,6 +164,8 @@ a:link,
 a:visited,
 a:hover,
 a:active,
+.category-list a:hover,
+.category-list a:active,
 .category-list button:hover,
 .category-list button:active {
     transition:
@@ -743,6 +761,7 @@ p.categories {
 
 a.category:link,
 a.category:visited,
+.category-list a,
 .category-list button {
     background-color: var(--accent-1);
     border-radius: var(--border-radius);
@@ -756,10 +775,12 @@ a.category:visited,
     text-decoration: none;
 }
 
+.category-list a,
 .category-list button {
     font-size: 1.6rem;
 }
 
+.category-list a .post-count,
 .category-list button .post-count {
     font-size: 1.4rem;
     margin-left: 0.1rem;
@@ -829,8 +850,9 @@ select:active {
     transition: color 0.15s ease-in-out, background 0.15s ease-in-out, border 0.15s ease-in-out;
 }
 
-select:focus {
-    outline: none;
+select:focus-visible {
+    outline: 2px solid var(--link);
+    outline-offset: 2px;
 }
 
 @media (prefers-color-scheme: light) {
@@ -1428,8 +1450,13 @@ img.bookshelf__cover {
 }
 
 @media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
     .site-nav .nav-menu,
-    .bar {
+    .bar,
+    .skip-link {
         transition: none;
     }
 }

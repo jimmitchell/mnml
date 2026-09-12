@@ -34,7 +34,7 @@
   <meta name="fediverse:creator" content="{{ $creator }}" />
   {{- end }}
   <link rel="canonical" href="{{ .Permalink }}">
-  <link rel="author" href="humans.txt" />
+  <link rel="author" href="{{ "humans.txt" | relURL }}" />
   <link href="{{ "css/fonts.css" | relURL }}?{{ .Site.Params.theme_seconds }}" rel="preload stylesheet" as="style">
   <link href="{{ "css/main.css" | relURL }}?{{ .Site.Params.theme_seconds }}" rel="preload stylesheet" as="style">
   {{- if .Site.Params.masonry_layout }}

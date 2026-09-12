@@ -2,13 +2,16 @@
 <html lang="{{ .Site.Language.Lang | default "en" }}">
     {{ partial "head.html" . }}
     <body>
+        <a class="skip-link" href="#main-content">{{ i18n "Skip to content" }}</a>
         {{ partial "header.html" . }}
+        <div id="main-content" tabindex="-1">
         {{ block "main" . }}{{ end }}
+        </div>
         {{ partial "footer.html" . }}
         <script defer type="text/javascript" src="{{ "js/menu.js" | relURL }}?{{ .Site.Params.theme_seconds }}"></script>
         <script defer type="text/javascript" src="{{ "js/scroll-to-top.js" | relURL }}?{{ .Site.Params.theme_seconds }}"></script>
         {{- if .Site.Params.enable_code_copy_button }}
-        <script defer type="text/javascript" src="{{ "js/copybutton.js" | relURL }}?{{ .Site.Params.theme_seconds }}"></script>
+        <script defer type="text/javascript" src="{{ "js/copybutton.js" | relURL }}?{{ .Site.Params.theme_seconds }}" data-copy-label="{{ i18n "Copy code" }}" data-copied-label="{{ i18n "Copied!" }}"></script>
         {{- end }}
         {{- range .Site.Params.plugins_js -}}
         <script defer type="text/javascript" src="{{ . }}"></script>

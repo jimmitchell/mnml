@@ -5,46 +5,12 @@
     <div class="microblog-category-intro">{{ . | safeHTML }}</div>
     {{- end }}
     {{- $paginator := .Paginate (where .Pages.ByDate.Reverse "Type" "post") (index .Site.Params "archive-paginate" | default 30) }}
-    {{- range $paginator.Pages  }}
-    <article class="{{ range $index, $category := .Params.categories }}{{ if gt $index 0 }} {{ end }}{{ $category | lower | urlize }}{{ end }}">
-        {{- if isset .Params "categories" }}
-        {{- range $index, $category := .Params.categories }}
-            {{- $href := printf "/categories/%s" (urlize $category) | absURL }}
-            {{- if gt $index 0 }}{{ end }}
-        {{- end }}
-        {{- end }}
-        {{- if .Title }}
-            <h2 class="post-title"><a href="{{ .Permalink }}">{{ .Title | safeHTML }}</a></h2>
-            <p class="post-date">{{- if .Site.Params.use_short_date }}{{ .Date | time.Format ":date_short" }}{{- else }}{{ .Date | time.Format ":date_full" }}{{- end }}{{- if .Site.Params.show_read_time }}&nbsp;<span class="sep">&bull;</span>&nbsp;{{ .ReadingTime }}&nbsp;{{ T "min read" }}{{- end }}</p>
-            {{- if or (.Site.Params.show_full_post) (.Site.Params.category_full_post) }}
-            {{ .Content }}
-            {{- else }}
-            <p>{{ .Summary | safeHTML }}</p>
-            <p><a href="{{ .Permalink }}">{{ T "Continue reading" }} →</a></p>
-            {{- end }}
-        {{- else if in .RawContent "<!--more-->" }}
-            <p class="post-date btm-margin"><a href="{{ .Permalink }}">{{- if .Site.Params.use_short_date }}{{ .Date | time.Format ":date_short" }}{{- else }}{{ .Date | time.Format ":date_full" }}{{- end }} →</a></p>
-            {{- if .Site.Params.show_full_post }}
-            {{ .Content }}
-            {{- else }}
-            <p>{{ .Summary | safeHTML }}</p>
-            {{- if .Truncated }}
-            <p><a href="{{ .Permalink }}">{{ T "Continue reading" }} →</a></p>
-            {{- end }}
-            {{- end }}
-        {{- else }}
-            <p class="post-date btm-margin"><a href="{{ .Permalink }}">{{- if .Site.Params.use_short_date }}{{ .Date | time.Format ":date_short" }}{{- else }}{{ .Date | time.Format ":date_full" }}{{- end }} →</a></p>
-            {{ .Content }}
-        {{- end }}
+    {{- $categoryFull := .Site.Params.category_full_post }}
+    {{- range $paginator.Pages }}
+    <article class="h-entry {{ range $index, $category := .Params.categories }}{{ if gt $index 0 }} {{ end }}{{ $category | lower | urlize }}{{ end }}">
+        {{- partial "post-content.html" (dict "post" . "full" $categoryFull) }}
     </article>
     {{- end }}
-    {{- if or ( $paginator.HasNext ) ( $paginator.HasPrev ) }}
-    <nav class="main-nav">
-        <ul>
-            <li>{{ if $paginator.HasNext }}<a href="{{ $paginator.Next.URL }}">← {{ T "Older" }}</a>{{ end }}</li>
-            <li>{{ if $paginator.HasPrev }}<a href="{{ $paginator.Prev.URL }}">{{ T "Newer" }} →</a>{{ end }}</li> 
-        </ul>
-    </nav>
-    {{- end }}
+    {{- partial "pagination.html" $paginator }}
 </main>
 {{ end }}

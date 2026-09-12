@@ -9,7 +9,7 @@
 		<div class="archive-categories">
 			<div class="category-list">
 				{{ range $categories }}
-				<a href="{{ .Page.Permalink }}"><button>{{ .Page.Title | safeHTML }}{{- if $category_count }}&nbsp;<span class="post-count">({{ .Count }})</span>{{- end }}</button></a>
+				<a href="{{ .Page.Permalink }}" class="category">{{ .Page.Title | safeHTML }}{{- if $category_count }}&nbsp;<span class="post-count">({{ .Count }})</span>{{- end }}</a>
 				{{ end }}
 			</div>
 		</div>
@@ -18,7 +18,6 @@
 		{{- $posts := where .Site.RegularPages "Type" "post" }}
 		{{- $groupedByYear := $posts.GroupByDate "2006" }}
 		{{- $groupedByYearMonth := $posts.GroupByDate "2006-01" }}
-		{{- $monthNames := dict "01" "January" "02" "February" "03" "March" "04" "April" "05" "May" "06" "June" "07" "July" "08" "August" "09" "September" "10" "October" "11" "November" "12" "December" }}
 
 		<div class="archive_years">
 			<label for="archive_popup">{{ T "Show posts from" }}:</label>
@@ -34,9 +33,8 @@
 			{{- range $groupedByYearMonth }}
 				{{- $yearMonth := .Key }}
 				{{- $year := index (split $yearMonth "-") 0 }}
-				{{- $month := index (split $yearMonth "-") 1 }}
-				{{- $monthName := index $monthNames $month }}
-				<h3 class="archive-range" data-year="{{ $year }}" data-year-month="{{ $yearMonth }}">{{ $monthName }} {{ $year }}</h3>
+				{{- $monthName := (index .Pages 0).Date | time.Format "January 2006" }}
+				<h3 class="archive-range" data-year="{{ $year }}" data-year-month="{{ $yearMonth }}">{{ $monthName }}</h3>
 				{{- range .Pages }}
 				<div class="post-container" data-year="{{ .Date.Format "2006" }}" data-year-month="{{ .Date.Format "2006-01" }}">
 					<p class="post-date h-entry">

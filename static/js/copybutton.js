@@ -1,4 +1,8 @@
 (function () {
+	var script = document.currentScript;
+	var copyLabel = (script && script.dataset.copyLabel) || 'Copy code';
+	var copiedLabel = (script && script.dataset.copiedLabel) || 'Copied!';
+
 	function makeSVG(attrs, children) {
 		var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
 		for (var k in attrs) svg.setAttribute(k, attrs[k]);
@@ -35,18 +39,18 @@
 		for (var i = 0; i < snippets.length; i++) {
 			var button = document.createElement('button');
 			button.appendChild(makeCopyIcon());
-			button.setAttribute('aria-label', 'Copy code');
+			button.setAttribute('aria-label', copyLabel);
 			button.addEventListener('click', function () {
 				var code = this.previousElementSibling.innerText;
 				navigator.clipboard.writeText(code);
 				this.replaceChildren(makeCopiedIcon());
 				this.classList.add('copied');
-				this.setAttribute('aria-label', 'Copied!');
+				this.setAttribute('aria-label', copiedLabel);
 				var self = this;
 				setTimeout(function () {
 					self.replaceChildren(makeCopyIcon());
 					self.classList.remove('copied');
-					self.setAttribute('aria-label', 'Copy code');
+					self.setAttribute('aria-label', copyLabel);
 				}, 2000);
 			});
 			snippets[i].appendChild(button);

@@ -1,4 +1,10 @@
 {{- $post := . }}
+{{- $forceFull := false }}
+{{- if reflect.IsMap . }}
+	{{- $post = .post }}
+	{{- $forceFull = .full }}
+{{- end }}
+{{- $showFull := or $post.Site.Params.show_full_post $forceFull }}
 {{- if $post.Title }}
 	<h2 class="post-title"><a href="{{ $post.Permalink }}" class="u-url">{{ $post.Title | safeHTML }}</a></h2>
 	<p class="post-date">
@@ -6,10 +12,10 @@
 			{{- if $post.Site.Params.use_short_date }}{{ $post.Date | time.Format ":date_short" }}{{- else }}{{ $post.Date | time.Format ":date_full" }}{{- end }}{{- if $post.Site.Params.show_read_time }}&nbsp;<span class="sep">&bull;</span>&nbsp;{{ $post.ReadingTime }}&nbsp;{{ T "min read" }}{{- end }}
 		</time>
 	</p>
-	{{- if $post.Site.Params.show_full_post }}
+	{{- if $showFull }}
 	{{ $post.Content }}
 	{{- else }}
-	<p>{{ $post.Summary | safeHTML }}</p>
+	{{ $post.Summary | safeHTML }}
 	<p><a href="{{ $post.Permalink }}" class="u-url">{{ T "Continue reading" }} →</a></p>
 	{{- end }}
 {{- else if in $post.RawContent "<!--more-->"}}
@@ -18,10 +24,10 @@
 			<a href="{{ $post.Permalink }}" class="u-url">{{- if $post.Site.Params.use_short_date }}{{ $post.Date | time.Format ":date_short" }}{{- else }}{{ $post.Date | time.Format ":date_full" }}{{- end }} →</a>
 		</time>
 	</p>
-	{{- if $post.Site.Params.show_full_post }}
+	{{- if $showFull }}
 	{{ $post.Content }}
 	{{- else }}
-	<p>{{ $post.Summary | safeHTML }}</p>
+	{{ $post.Summary | safeHTML }}
 	{{- if $post.Truncated }}
 	<p><a href="{{ $post.Permalink }}" class="u-url">{{ T "Continue reading" }} →</a></p>
 	{{- end }}

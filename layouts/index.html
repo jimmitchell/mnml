@@ -34,13 +34,6 @@
         {{- partial "post-content.html" . }}
     </article>
     {{- end }}
-    {{- if or ($paginator.HasNext) ($paginator.HasPrev) }}
-    <nav class="main-nav">
-        <ul>
-            <li>{{ if $paginator.HasNext }}<a href="{{ $paginator.Next.URL }}">← {{ T "Older" }}</a>{{ end }}</li>
-            <li>{{ if $paginator.HasPrev }}<a href="{{ $paginator.Prev.URL }}">{{ T "Newer" }} →</a>{{ end }}</li>
-        </ul>
-    </nav>
-    {{- end }}
+    {{- partial "pagination.html" $paginator }}
 </main>
 {{ end }}

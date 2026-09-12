@@ -10,4 +10,4 @@
 <div id="list_results"
      data-max-results="{{ $.Site.Params.search_results | default 5 }}">
 </div>
-<script defer type="text/javascript" src="{{ "js/search.js" | relURL }}"></script>
+<script defer type="text/javascript" src="{{ "js/search.js" | relURL }}?{{ $.Site.Params.theme_seconds }}"></script>

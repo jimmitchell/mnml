@@ -27,7 +27,10 @@ function runSearch(q) {
 
 				if (item.title.length > 0) {
 					title_node = document.createElement("span");
-					title_node.innerHTML = ": <b>" + item.title + "</b>";
+					title_node.appendChild(document.createTextNode(": "));
+					var bold_node = document.createElement("b");
+					bold_node.textContent = item.title;
+					title_node.appendChild(bold_node);
 				}
 
 				var s = item.content_text;
@@ -36,7 +39,7 @@ function runSearch(q) {
 				}
 
 				var text_node = document.createElement("span");
-				text_node.innerHTML = ": " + s;
+				text_node.textContent = ": " + s;
 
 				p_node.appendChild(link_node);
 

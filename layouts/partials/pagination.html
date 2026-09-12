@@ -1,7 +1,9 @@
-{{- $pag := $.Paginator }}
+{{- $pag := . }}
+{{- if or $pag.HasNext $pag.HasPrev }}
 <nav class="main-nav">
     <ul>
-        <li>{{ if $pag.HasPrev }}<a href="{{ $pag.Prev.URL }}">← {{ T "Newer" }}</a>{{ end }}</li>
-        <li>{{ if $pag.HasNext }}<a href="{{ $pag.Next.URL }}">{{ T "Older" }} →</a>{{ end }}</li>
+        <li>{{ if $pag.HasNext }}<a href="{{ $pag.Next.URL }}">← {{ T "Older" }}</a>{{ end }}</li>
+        <li>{{ if $pag.HasPrev }}<a href="{{ $pag.Prev.URL }}">{{ T "Newer" }} →</a>{{ end }}</li>
     </ul>
 </nav>
+{{- end }}

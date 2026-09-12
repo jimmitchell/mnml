@@ -52,11 +52,16 @@
         <script type="text/javascript" src="https://micro.blog/conversation.js?url={{ .Permalink }}"></script>
     </div>
     {{- end }}
-    {{- if or (.NextInSection) (.PrevInSection) }}
+    {{- /* Sections are per-year on Micro.blog, so InSection stops at the year
+           boundary. Walk the post list instead so the chain stays unbroken. */}}
+    {{- $posts := partialCached "post-list.html" . }}
+    {{- $older := $posts.Prev . }}
+    {{- $newer := $posts.Next . }}
+    {{- if or $older $newer }}
     <nav class="main-nav visually-hidden">
         <ul>
-            <li>{{ if .PrevInSection }}<a href="{{ .PrevInSection.Permalink }}">← {{ T "Older" }}</a>{{ end }}</li>
-            <li>{{ if .NextInSection }}<a href="{{ .NextInSection.Permalink }}">{{ T "Newer" }} →</a>{{ end }}</li>
+            <li>{{ with $older }}<a href="{{ .Permalink }}">← {{ T "Older" }}</a>{{ end }}</li>
+            <li>{{ with $newer }}<a href="{{ .Permalink }}">{{ T "Newer" }} →</a>{{ end }}</li>
         </ul>
     </nav>
     {{- end }}

@@ -1,0 +1,5 @@
+{{- /* All posts, newest first. Sorted explicitly: the default page order puts
+       weight ahead of date, so a single weighted post would otherwise reorder
+       the Older/Newer chain. Wrapped in a partial so post/single.html can pull
+       it through partialCached and sort once per build, not once per post. */ -}}
+{{- return (where .Site.RegularPages "Type" "post").ByDate.Reverse }}

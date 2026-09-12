@@ -1,24 +1,26 @@
+{{- $page := . }}
 <header class="header">
-    <nav class="site-nav">
+    <nav class="site-nav" aria-label="{{ i18n "Main navigation" }}">
         {{- if .Site.Params.hide_avatar }}
         <h1 class="site-title"><a href="/">{{ .Site.Title }}</a></h1>
         {{- else }}
         {{- $avatar := .Site.Params.custom_avatar }}
         <h1 class="site-title"><a href="/"><img id="avatar" class="u-photo" src="{{ if $avatar }}{{ $avatar }}{{ else }}{{ .Site.Params.Author.avatar }}{{ end }}" width="36" height="36" />{{ .Site.Title }}</a></h1>
         {{- end }}
-        <ul class="nav-menu">
+        <ul id="nav-menu" class="nav-menu">
         {{- range .Site.Menus.main }}
+            {{- $current := or ($page.IsMenuCurrent "main" .) ($page.HasMenuCurrent "main" .) }}
             {{- if .Page.Params.redirect_url }}
             <li class="nav-item"><a href="{{ .Page.Params.redirect_url }}">{{ .Name | safeHTML }}</a></li>
             {{- else }}
-            <li class="nav-item"><a href="{{ .URL | relLangURL | safeURL }}">{{ .Name | safeHTML }}</a></li>
+            <li class="nav-item"><a href="{{ .URL | relLangURL | safeURL }}"{{ if $current }} aria-current="page"{{ end }}>{{ .Name | safeHTML }}</a></li>
             {{- end }}
         {{- end }}
         </ul>
-        <div class="hamburger">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </div>
+        <button type="button" class="hamburger" aria-label="{{ i18n "Menu" }}" aria-expanded="false" aria-controls="nav-menu">
+            <span class="bar" aria-hidden="true"></span>
+            <span class="bar" aria-hidden="true"></span>
+            <span class="bar" aria-hidden="true"></span>
+        </button>
     </nav>
 </header>

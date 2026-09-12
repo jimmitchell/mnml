@@ -8,6 +8,9 @@
     --site-width: 68rem;
     --photos-wide: 120rem;
     --border-radius: 0.6rem;
+    --z-menu: 10000;
+    --z-header: 11000;
+    --z-hamburger: 11001;
 }
 
 @media (prefers-color-scheme: light) {
@@ -116,6 +119,7 @@ body {
 body.menu-open {
     overflow: hidden;
 }
+
 
 ::-moz-selection {
     background: var(--accent-2);
@@ -474,7 +478,21 @@ main {
 }
 
 .hamburger {
+    -webkit-appearance: none;
+    appearance: none;
+    background: none;
+    border: 0;
+    border-radius: var(--border-radius);
+    color: inherit;
     display: none;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.hamburger:focus-visible {
+    outline: 2px solid var(--link);
+    outline-offset: 2px;
 }
 
 .bar {
@@ -482,8 +500,8 @@ main {
     display: block;
     height: 2px;
     margin: 3px auto;
-    -webkit-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
+    -webkit-transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+    transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
     width: 16px;
 }
 
@@ -1306,44 +1324,62 @@ img.bookshelf__cover {
         background: var(--background);
         font-size: 2rem;
         position: relative;
-        z-index: 11000;
+        z-index: var(--z-header);
     }
 
-    .site-nav ul {
-        height: 100dvh;
-        justify-content: start;
-        padding: 4rem 0;
-    }
-
-    .nav-menu {
+    /* Closed: hidden rather than parked off-screen, so the links stay out of
+       the tab order and the accessibility tree. */
+    .site-nav .nav-menu {
+        align-items: stretch;
         background-color: var(--background);
         border-radius: 0;
         flex-direction: column;
-        height: 100dvh;
-        left: -100%;
-        overflow: hidden;
+        inset: 0;
+        justify-content: flex-start;
+        margin: 0;
+        opacity: 0;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
+        padding: 9rem 2rem 4rem 2rem;
         position: fixed;
         text-align: center;
-        top: 0;
-        transition: 0.3s;
-        width: 100%;
-        z-index: 10000;
+        transform: translateY(-0.8rem);
+        transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out, visibility 0s linear 0.2s;
+        visibility: hidden;
+        z-index: var(--z-menu);
     }
 
-    .nav-menu.active {
-        left: 0;
-        margin: 0;
-        padding: 10rem 0;
-        top: 0;
+    .site-nav .nav-menu.active {
+        opacity: 1;
+        transform: none;
+        transition-delay: 0s;
+        visibility: visible;
     }
 
     .nav-item {
-        margin: 1.5rem 0;
+        margin: 0;
+    }
+
+    .nav-item a {
+        display: block;
+        padding: 1.2rem 1rem;
     }
 
     .hamburger {
+        align-items: center;
         cursor: pointer;
-        display: block;
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+        height: 44px;
+        justify-content: center;
+        margin-right: -1rem;
+        width: 44px;
+    }
+
+    .hamburger .bar {
+        margin: 0 auto;
     }
 
     body.menu-open .site-nav {
@@ -1356,7 +1392,7 @@ img.bookshelf__cover {
     body.menu-open .site-title,
     body.menu-open .hamburger {
         position: relative;
-        z-index: 11001;
+        z-index: var(--z-hamburger);
     }
 
     .hamburger.active .bar:nth-child(2) {
@@ -1388,5 +1424,12 @@ img.bookshelf__cover {
     input.subscribe-submit {
         padding: 9px;
         width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .site-nav .nav-menu,
+    .bar {
+        transition: none;
     }
 }

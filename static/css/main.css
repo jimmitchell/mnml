@@ -117,8 +117,18 @@ body {
     word-wrap: break-word;
 }
 
+/* The viewport scrolls on <html> (it sets overflow-y above), so the scroll lock
+   has to live there too: an overflow on <body> alone never reaches the viewport
+   and the page keeps scrolling behind the open menu. */
+html.menu-open,
 body.menu-open {
     overflow: hidden;
+}
+
+/* Locking reclaims the scrollbar's gutter. Hand that width back so the page
+   behind the menu doesn't slide sideways. Zero where scrollbars overlay. */
+body.menu-open {
+    padding-right: var(--scrollbar-width, 0px);
 }
 
 .skip-link {
@@ -1404,13 +1414,9 @@ img.bookshelf__cover {
         margin: 0 auto;
     }
 
-    body.menu-open .site-nav {
-        left: 0;
-        position: fixed;
-        top: 0;
-        width: 100%;
-    }
-
+    /* The nav stays in normal flow while the menu is open. Taking it out of
+       flow collapsed the header and jerked the page up by its height, which
+       showed through the overlay as it faded in and out. */
     body.menu-open .site-title,
     body.menu-open .hamburger {
         position: relative;

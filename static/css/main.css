@@ -1416,9 +1416,12 @@ img.bookshelf__cover {
 
     /* The nav stays in normal flow while the menu is open. Taking it out of
        flow collapsed the header and jerked the page up by its height, which
-       showed through the overlay as it faded in and out. */
-    body.menu-open .site-title,
-    body.menu-open .hamburger {
+       showed through the overlay as it faded in and out.
+       Keep the title and button above the overlay at all times, not only
+       under body.menu-open: that class drops the moment the menu closes, while
+       the overlay is still fading out, and the title flashed beneath it. */
+    .site-title,
+    .hamburger {
         position: relative;
         z-index: var(--z-hamburger);
     }

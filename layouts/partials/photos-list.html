@@ -1,0 +1,15 @@
+{{- $allFormats := .Site.Params.all_formats }}
+{{- $category := index .Site.Taxonomies.categories (lower .Site.Params.photos_category) }}
+{{- $list := slice }}
+{{- if $category }}
+	{{- if $allFormats }}
+		{{- $list = where $category.Pages ".Params.images" "!=" nil }}
+	{{- else }}
+		{{- $list = where $category.Pages ".Params.photos" "!=" nil }}
+	{{- end }}
+{{- else if $allFormats }}
+	{{- $list = where .Site.Pages ".Params.images" "!=" nil }}
+{{- else }}
+	{{- $list = where .Site.Pages ".Params.photos" "!=" nil }}
+{{- end }}
+{{- return $list }}

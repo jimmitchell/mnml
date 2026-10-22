@@ -2,11 +2,52 @@
 <main class="photos{{ if .Site.Params.full_width_photos }}{{ print "-wide" }}{{ end }}">
 	<article>
 		<h1 class="page-title">{{ T "Photos" }}</h1>
+
+		{{- $list := partial "photos-list.html" . }}
+		{{- if gt (len $list) 0 }}
+		<div class="archive_years">
+			<label for="photos_popup">{{ T "Show photos from" }}:</label>
+			<select id="photos_popup">
+				<option value="all">{{ T "All years" }}</option>
+				{{ range $list.GroupByDate "2006" }}
+				<option value="{{ .Key }}">{{ .Key }}</option>
+				{{ end }}
+			</select>
+		</div>
+		{{- end }}
+
 		{{- if .Site.Params.masonry_layout }}
 		{{ partial "photos-masonry.html" . }}
 		{{- else }}
 		{{ partial "photos-grid.html" . }}
 		{{- end }}
+
+		<script>
+			(function() {
+				const select = document.getElementById('photos_popup');
+				if (!select) return;
+
+				function filterPhotos() {
+					const sel = select.value;
+					// each month header is followed by its own list of photos
+					document.querySelectorAll('h3.archive-range[data-year]').forEach(header => {
+						const display = (sel === "all" || header.getAttribute('data-year') === sel) ? '' : 'none';
+						header.style.display = display;
+						if (header.nextElementSibling && header.nextElementSibling.matches('ul')) {
+							header.nextElementSibling.style.display = display;
+						}
+					});
+					// images that loaded while hidden were sized at zero width
+					window.dispatchEvent(new Event('resize'));
+				}
+
+				// on change, re-filter
+				select.addEventListener('change', filterPhotos);
+
+				// initial filter
+				filterPhotos();
+			})();
+		</script>
 	</article>
 </main>
 {{ end }}

@@ -1,18 +1,6 @@
 {{- $allFormats := .Site.Params.all_formats }}
 {{- $singleImage := .Site.Params.single_image | default false }}
-{{- $category := index .Site.Taxonomies.categories (lower .Site.Params.photos_category) }}
-{{- $list := slice }}
-{{- if $category }}
-	{{- if $allFormats }}
-		{{- $list = where $category.Pages ".Params.images" "!=" nil }}
-	{{- else }}
-		{{- $list = where $category.Pages ".Params.photos" "!=" nil }}
-	{{- end }}
-{{- else if $allFormats }}
-	{{- $list = where .Site.Pages ".Params.images" "!=" nil }}
-{{- else }}
-	{{- $list = where .Site.Pages ".Params.photos" "!=" nil }}
-{{- end }}
+{{- $list := partial "photos-list.html" . }}
 {{- $len := (len $list) }}
 {{- $currentYearMonth := "" }}
 {{- range sort $list "Date" "desc" }}

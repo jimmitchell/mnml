@@ -44,7 +44,7 @@ See the theme in action at [mnml.micro.blog](https://mnml.micro.blog).
 - `.full-width`: A full width image that spans the entire width of the page. This is the same as adding an image using Markdown.
 - `.overflow`: A full width image that overflows the width of the page.
 
-Applying one of these classes to an image will allow you to control appearance and layout. It's far better to see it in action, so for more details and code examples, visit the **[mnml]** [style guide page](https://mnml.micro.blog/styleguide/#images-markdown-and-optional-html).
+Applying one of these classes to an image will allow you to control appearance and layout. It's far better to see it in action, so for more details and code examples, visit the **mnml** [style guide page](https://mnml.micro.blog/styleguide/#images-markdown-and-optional-html).
 
 ## Adding a Search Page
 

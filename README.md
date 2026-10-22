@@ -1,3 +1,7 @@
+---
+title: mnml
+---
+
 # mnml
 
 ![mnml](https://raw.githubusercontent.com/jimmitchell/mnml/main/icon.jpg)
@@ -44,7 +48,7 @@ Applying one of these classes to an image will allow you to control appearance a
 
 ## Adding a Search Page
 
-**mnml** has a built-in Search shortcode to let you add a Search page if you so desire...
+**mnml** has a built-in Search shortcode to let you add a Search page if you so desire.
 
 1. Create a new Micro.blog page. Name it whatever you like with a url of whatever you like.
 2. In the page body, add the `{{< search >}}` shortcode.
